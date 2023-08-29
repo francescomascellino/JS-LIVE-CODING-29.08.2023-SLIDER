@@ -65,33 +65,33 @@ let activeSlide = 0;
 
 // select the dom elements
 const sliderImagesEl = document.querySelector('.slider .images')
+
 const prevEl = document.querySelector('.prev')
+
 const nextEl = document.querySelector('.next')
-
-
-//console.log(sliderImagesEl);
 
 /* Print all images into the dom */
 // loop over the slides 
 for (let i = 0; i < slides.length; i++) {
+
     const slidePath = slides[i];
     console.log(slidePath);
 
-    // for each slide we create the markup
+    /* TERNARY OPERATOR
 
-    /* 
     if(condition) {
     // code to run
     } else {
     // code to run
     }
 
-    // terary operator
+    // with ternary operator
 
     condition ? 'code to run' : 'code to run'
     */
+
+    //for each slide we create a markup element. if activeSlide is === i it has the active class. This make the code show the first image as for now activeSlide = 0. the other images will be printed on the markup without the "active" class.    
     const slideMarkup = `<img class="${activeSlide === i ? 'active' : ''}" src="${slidePath}" alt="">`
-    //console.log(slideMarkup);
 
     sliderImagesEl.insertAdjacentHTML('beforeend', slideMarkup)
 
@@ -108,24 +108,26 @@ console.log(slidesImages);
 /* 
 BONUS 1:
 Aggiungere il ciclo infinito del carosello. Ovvero se è attiva la prima immagine e l'utente clicca la freccia per andare all’immagine precedente, dovrà comparire l’ultima immagine dell’array e viceversa.
-
 */
 
 /* 
-
 BONUS 2:
 Aggiungere la visualizzazione di tutte le thumbnails sulla destra dell’immagine grande attiva, 
 come nello screenshot proposto. Tutte le miniature avranno un layer di opacità scura, tranne quella corrispondente all’immagine attiva, che invece avrà un bordo colorato. 
 Al click delle frecce, oltre al cambio di immagine attiva, gestire il cambio di miniatura attiva.
-
 */
 
+//select thumbnails DOM elements
 const thumbsElement = document.querySelector('.thumbnails')
 
+//Loops over the thumbs and prints them on the DOM
 for (let i = 0; i < slides.length; i++) {
+
+    //The thumb path is the same as the slides
     const thumbPath = slides[i];
+
+    //for each thumbnail we create a markup element. if activeSlide is === i it has the active class. This make the code show the first image as for now activeSlide = 0. the other images will be printed on the markup without the "active" class.
     const thumbMarkup = `<img class="thumb ${activeSlide === i ? 'active' : ''}" src="${thumbPath}" alt="">`
-    //console.log(thumbMarkup);
 
     thumbsElement.insertAdjacentHTML('beforeend', thumbMarkup)
 
@@ -137,18 +139,19 @@ nextEl.addEventListener('click', function () {
 
     // select the current slide
     const currentSlide = slidesImages[activeSlide]
-    console.log(currentSlide);
+    console.log("currentSlide = ", currentSlide);
 
     // remove the active class from the current slide
     currentSlide.classList.remove('active')
 
     // select the active thumb
     const currentThumb = document.querySelector('.thumbnails > img.active')
-    console.log(currentThumb);
+    console.log("currentThumb = ", currentThumb);
 
     // remove the active class from the active thumb
     currentThumb.classList.remove('active')
 
+    //after we remove the acrive class from the images we increment the activeSlide value by 1
     if (activeSlide === slidesImages.length - 1) {
         activeSlide = 0
 
@@ -156,47 +159,47 @@ nextEl.addEventListener('click', function () {
 
         // increment the activeSlide of 1
         activeSlide++
+        console.log("activeSlide = ", activeSlide);
 
     }
 
-    // select the next slide
+    // after the if/else block, activeSlide has is value changed. we select again the slide with the new value to add the active class
     const nextSlide = slidesImages[activeSlide]
-    console.log(nextSlide);
+    console.log("nextSlide = ", nextSlide);
 
     // add the active class to the next slide
     nextSlide.classList.add('active')
 
     // select the next thumb
     const nextThumb = document.querySelectorAll('.thumb')[activeSlide];
-    console.log(nextThumb);
+    console.log("nextThumb = ", nextThumb);
 
     // add to the next thumb the active class
     nextThumb.classList.add('active')
 
 })
 
-/* TODO */
+console.log("activeSlide = ", activeSlide);
 
 // intercept click on the prev icon
-
-// activeSlide = 0
 prevEl.addEventListener('click', function () {
     console.log('cliccato su prev');
 
     // select the current slide
     const currentSlide = slidesImages[activeSlide]
-    console.log(currentSlide);
+    console.log("currentSlide = ", currentSlide);
 
     // remove the active class from the current slide
     currentSlide.classList.remove('active')
 
     // select the active thumb
     const currentThumb = document.querySelector('.thumbnails > img.active')
-    console.log(currentThumb);
+    console.log("currentThumb = ", currentThumb);
 
     // remove the active class from the active thumb
     currentThumb.classList.remove('active')
 
+    //after we remove the acrive class from the images we increment the activeSlide value by 1
     if (activeSlide === 0) {
 
         activeSlide = slidesImages.length - 1
@@ -205,24 +208,23 @@ prevEl.addEventListener('click', function () {
 
         // decrement the activeSlide of 1
         activeSlide--
+        console.log("activeSlide = ", activeSlide);
 
     }
 
-
-    console.log(activeSlide);
-
-    // select the next slide
+    // after the if/else block, activeSlide has is value changed. we select again the slide with the new value to add the active class
     const nextSlide = slidesImages[activeSlide]
-    console.log(nextSlide);
+    console.log("nextSlide = ", nextSlide);
 
     // add the active class to the next slide
     nextSlide.classList.add('active')
 
-    // select the next thumb
+    // select the next thumb to show
     const nextThumb = document.querySelectorAll('.thumb')[activeSlide];
-    console.log(nextThumb);
+    console.log("nextThumb = ", nextThumb);
 
     // add to the next thumb the active class
     nextThumb.classList.add('active')
 
 })
+
