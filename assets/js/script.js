@@ -51,7 +51,6 @@ Al termine di questa fase ci ritroveremo con lo stesso slider stilato nella mile
 <img class="active" src="./assets/img/01.webp" alt="">
 */
 
-
 /* Define the slides list */
 const slides = [
     './assets/img/01.webp', //0
